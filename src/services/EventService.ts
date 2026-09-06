@@ -1,7 +1,8 @@
 import axios from 'axios'
+import type { Event } from '@/types'
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:8080/',
+  baseURL: import.meta.env.VITE_BACKEND_URL,
   withCredentials: false,
   headers: {
     Accept: 'application/json',
@@ -16,4 +17,7 @@ export default {
   getEvent(id: number) {
     return apiClient.get('/events/' + id)
   },
+  saveEvent(event: Event) {
+    return apiClient.post('/events', event)
+  }
 }
