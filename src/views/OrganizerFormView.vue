@@ -6,9 +6,8 @@ import { useRouter } from 'vue-router'
 import { useMessageStore } from '@/stores/message'
 
 const organizer = ref<Organizer>({
-  id: null,
-  organizationName: '',
-  address: ''
+  id: 0,
+  name: ''
 })
 
 const router = useRouter()
@@ -17,7 +16,7 @@ const store = useMessageStore()
 function saveOrganizer() {
   OrganizerService.saveOrganizer(organizer.value)
     .then((response) => {
-      store.updateMessage('You successfully added a new organizer: ' + response.data.organizationName)
+      store.updateMessage('You successfully added a new organizer: ' + response.data.name)
       setTimeout(() => {
         store.resetMessage()
       }, 3000)
@@ -34,19 +33,11 @@ function saveOrganizer() {
   <div>
     <h1>Create an Organizer</h1>
     <form @submit.prevent="saveOrganizer">
-      <label class="block text-gray-500 font-bold">Organization Name</label>
+      <label class="block text-gray-500 font-bold">Organizer Name</label>
       <input
-        v-model="organizer.organizationName"
+        v-model="organizer.name"
         type="text"
-        placeholder="Enter organization name"
-        class="h-13 w-full px-2.5 text-xl border border-gray-400 focus:border-emerald-500 focus:outline-none mb-6"
-      />
-
-      <label class="block text-gray-500 font-bold">Address</label>
-      <input
-        v-model="organizer.address"
-        type="text"
-        placeholder="Enter address"
+        placeholder="Enter organizer name"
         class="h-13 w-full px-2.5 text-xl border border-gray-400 focus:border-emerald-500 focus:outline-none mb-6"
       />
 
