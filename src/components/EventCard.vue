@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import type { Event } from '@/types'
-// defineProps<{
-//   msg: string
-// }>()
+
 defineProps<{
   event: Event
 }>()
@@ -14,6 +12,10 @@ defineProps<{
       class="p-5 w-[250px] cursor-pointer border border-[#39495c] mb-[18px] hover:scale-101 hover:shadow-sp"
     >
       <h2>{{ event.title }}</h2>
+      
+      <span>by</span>
+      <h5>{{ event.organizer?.name }}</h5> 
+
       <span>{{ event.category }} @ {{ event.location }}</span>
     </div>
   </RouterLink>
