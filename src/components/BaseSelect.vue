@@ -34,7 +34,6 @@ const props = withDefaults(defineProps<BaseSelectProps>(), {
       </option>
     </select>
     
-    <!-- SVG ลูกศรชี้ลง -->
     <svg
       class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-2 h-2.5 fill-gray-700"
       viewBox="0 0 4 5"
