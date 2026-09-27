@@ -12,9 +12,14 @@ defineProps<{
       class="p-5 w-[250px] cursor-pointer border border-[#39495c] mb-[18px] hover:scale-101 hover:shadow-sp"
     >
       <h2>{{ event.title }}</h2>
-      
+
       <span>by</span>
-      <h5>{{ event.organizer?.name }}</h5> 
+      <RouterLink
+        :to="{ name: 'organizer-detail-view', params: { id: event.organizer.id } }"
+        @click.stop
+      >
+        <h5 class="hover:underline text-blue-600">{{ event.organizer?.name }}</h5>
+      </RouterLink>
 
       <span>{{ event.category }} @ {{ event.location }}</span>
     </div>

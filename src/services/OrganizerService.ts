@@ -17,5 +17,12 @@ export default {
   
   saveOrganizer(organizer: Organizer) {
     return apiClient.post('/organizers', organizer)
+  },
+
+  getOrganizerImage(imageKey: string) {
+    return apiClient.get<string>('/presignedUrl', {
+      params: { fileName: imageKey },
+      responseType: 'text',
+    }).then((response) => response.data)
   }
 }

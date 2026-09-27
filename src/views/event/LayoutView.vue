@@ -8,6 +8,18 @@ const { event } = storeToRefs(store)
 <template>
   <div v-if="event">
     <h1>{{ event.title }}</h1>
+
+    <p class="text-gray-600 mb-4">
+      by 
+      <RouterLink 
+        v-if="event.organizer"
+        :to="{ name: 'organizer-detail-view', params: { id: event.organizer.id } }"
+        class="text-blue-600 hover:underline font-semibold"
+      >
+        {{ event.organizer.name }}
+      </RouterLink>
+    </p>
+    
     <nav>
       <RouterLink :to="{ name: 'event-detail-view' }">Details</RouterLink>
       |
