@@ -13,6 +13,7 @@ import { useEventStore } from '@/stores/event'
 import AddEventView from '@/views/event/EventFormView.vue'
 import AddOrganizerView from '@/views/OrganizerFormView.vue'
 import OrganizerDetailView from '@/views/OrganizerDetailView.vue'
+import LoginView from '@/views/LoginView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +28,11 @@ const router = createRouter({
       path: '/about',
       name: 'about',
       component: AboutView,
+    },
+    {
+      path: '/login',
+      name: 'login-view',
+      component: LoginView,
     },
     {
       path: '/add-event',
