@@ -17,12 +17,15 @@ export const useAuthStore = defineStore('auth', {
     token: localStorage.getItem('access_token') as string | null,
     user: JSON.parse(localStorage.getItem('user') as string) as Organizer | null,
   }),
-  getters: {
+    getters: {
     currentUserName(): string {
       return this.user?.name || ''
     },
     isAdmin(): boolean {
       return this.user?.roles?.includes('ROLE_ADMIN') || false
+    },
+    authorizationHeader(): string {
+      return `Bearer ${this.token}`
     },
   },
   actions: {
@@ -47,5 +50,14 @@ export const useAuthStore = defineStore('auth', {
       localStorage.removeItem('access_token')
       localStorage.removeItem('user')
     },
-  },
+    register(user: {
+      username: string
+      firstname: string
+      lastname: string
+      email: string
+      password: string
+    }) {
+      return apiClient.post('/api/v1/auth/register', user)
+    }
+  }
 })
